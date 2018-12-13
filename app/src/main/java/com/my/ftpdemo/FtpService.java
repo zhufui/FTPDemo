@@ -2,11 +2,9 @@ package com.my.ftpdemo;
 
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,9 +16,6 @@ import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.WritePermission;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +27,8 @@ public class FtpService extends Service {
     public static final String TAG = FtpService.class.getSimpleName();
 
     private FtpServer server;
-    private String user = "admin";
-    private String password = "123456";
+    private String user = "1";
+    private String password = "1";
     private static String rootPath;
     private int port = 2221;
 
@@ -82,7 +77,7 @@ public class FtpService extends Service {
         //设置访问用户名和密码还有共享路径
         BaseUser baseUser = new BaseUser();
         baseUser.setName(user);
-        baseUser.setPassword(password);
+        baseUser.setPassword(password);//如果不设置密码，那就是匿名登录
         baseUser.setHomeDirectory(rootPath);
 
         List<Authority> authorities = new ArrayList<Authority>();
